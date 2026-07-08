@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Chashmish ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:bg 12s infinite alternate;
+}
+
+@keyframes bg{
+    from{background-position:left;}
+    to{background-position:right;}
+}
+
+
+.card{
+    width:92%;
+    max-width:700px;
+    padding:45px 35px;
+    text-align:center;
+    border-radius:35px;
+    background:rgba(255,255,255,.22);
+    backdrop-filter:blur(20px);
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+    color:white;
+    z-index:2;
+}
+
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:75px;
+    font-weight:400;
+    text-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+
+.message{
+    margin-top:25px;
+    font-family:'Playfair Display',serif;
+    font-size:25px;
+    line-height:1.8;
+    font-weight:600;
+}
+
+
+.cursor{
+    animation:blink .7s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+
+button{
+    padding:16px 45px;
+    margin:35px 10px;
+    border:none;
+    border-radius:50px;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+
+#yes{
+    background:linear-gradient(45deg,#ff4081,#ff80ab);
+    color:white;
+    box-shadow:0 10px 25px rgba(255,64,129,.5);
+}
+
+
+#yes:hover{
+    transform:scale(1.1);
+}
+
+
+#no{
+    position:absolute;
+    background:white;
+    color:#ff4081;
+}
+
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    animation:rise 8s linear infinite;
+    font-size:30px;
+}
+
+
+@keyframes rise{
+
+to{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+}
+
+}
+
+
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+}
+
+
+.popup-box{
+    width:90%;
+    max-width:550px;
+    background:white;
+    color:#555;
+    padding:40px;
+    border-radius:35px;
+    text-align:center;
+    animation:pop .5s;
+}
+
+
+@keyframes pop{
+    from{
+        transform:scale(.3);
+    }
+    to{
+        transform:scale(1);
+    }
+}
+
+
+.popup-box h2{
+    font-family:'Great Vibes',cursive;
+    font-size:65px;
+    color:#ff4081;
+}
+
+
+.popup-box p{
+    margin-top:20px;
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    line-height:1.8;
+}
+
+
+.close{
+    background:#ff4081;
+    color:white;
+}
+
+
+canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+}
+
+
+@media(max-width:600px){
+
+h1{
+    font-size:52px;
+}
+
+.message{
+    font-size:19px;
+}
+
+button{
+    font-size:18px;
+    padding:13px 30px;
+}
+
+.popup-box h2{
+    font-size:45px;
+}
+
+.popup-box p{
+    font-size:17px;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+<h1>
+Hey Chashmish 👓❤️
+</h1>
+
+
+<div class="message">
+<span id="typing"></span><span class="cursor">|</span>
+</div>
+
+
+<button id="yes">
+Yes 💖
+</button>
+
+<button id="no">
+No 🙈
+</button>
+
+
+</div>
+
+
+
+<div class="popup" id="popup">
+
+<div class="popup-box">
+
+<h2>
+Yayyy ❤️
+</h2>
+
+
+<p>
+
+I missed you so so much 🥹❤️<br><br>
+
+I don't want to rush anything.
+I just want to start with a beautiful friendship 🌸<br><br>
+
+Let's go for a friendly coffee ☕,
+talk, laugh, and know each other better ✨<br><br>
+
+I still remember our metro talks 🚇❤️<br><br>
+
+And yes... I want to know more about you
+(and see those biceps 💪😂)<br><br>
+
+Looking forward to our new memories 🌹
+
+</p>
+
+
+<button class="close" onclick="closePopup()">
+See You Soon ❤️
+</button>
+
+
+</div>
+
+</div>
+
+
+<canvas id="confetti"></canvas>
+
+
+<script>
+
+
+let text=
+"I missed you so so much ❤️ Can we start as friends? 🌸 I miss our metro talks 🚇";
+
+let index=0;
+
+
+function type(){
+
+if(index<text.length){
+
+document.getElementById("typing").innerHTML+=text[index];
+
+index++;
+
+setTimeout(type,50);
+
+}
+
+}
+
+type();
+
+
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"%";
+
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(heart);
+
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+
+},500);
+
+
+
+let no=document.getElementById("no");
+
+
+function moveNo(){
+
+no.style.left=Math.random()*
+(window.innerWidth-120)+"px";
+
+no.style.top=Math.random()*
+(window.innerHeight-60)+"px";
+
+}
+
+
+no.addEventListener("mouseover",moveNo);
+no.addEventListener("touchstart",moveNo);
+
+
+
+document.getElementById("yes").onclick=function(){
+
+document.getElementById("popup").style.display="flex";
+
+startConfetti();
+
+};
+
+
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+
+
+function startConfetti(){
+
+let canvas=document.getElementById("confetti");
+
+let ctx=canvas.getContext("2d");
+
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+
+let pieces=[];
+
+
+for(let i=0;i<150;i++){
+
+pieces.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height-canvas.height,
+size:Math.random()*8+4,
+speed:Math.random()*5+2,
+color:["#ff4081","#ffd700","#00e676","#40c4ff"][Math.floor(Math.random()*4)]
+
+});
+
+}
+
+
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+
+pieces.forEach(p=>{
+
+ctx.fillStyle=p.color;
+
+ctx.fillRect(p.x,p.y,p.size,p.size);
+
+p.y+=p.speed;
+
+
+if(p.y>canvas.height)
+p.y=-10;
+
+
+});
+
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+}
+
+
+</script>
+
+</body>
+</html>
